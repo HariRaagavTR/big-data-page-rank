@@ -22,14 +22,16 @@ def similarity(vector_1, vector_2):
     
 # ---------- Input Files  ---------- #
 
-v_file = open(sys.argv[1])
+initial_page_rank_file = open(sys.argv[1])
 initial_page_ranks = {}
-for line in v_file:
+for line in initial_page_rank_file:
     node, rank = line.split(',')
     initial_page_ranks[node] = float(rank)
+initial_page_rank_file.close()
 
 pe_file = open(sys.argv[2])
 page_embeddings = json.load(pe_file)
+pe_file.close()
 
 # ---------- Main Code  ---------- #
 
@@ -46,7 +48,9 @@ for line in sys.stdin:
         except:
             initial_page_rank = 1
         print('%s,%s,%f' % (
-                child.zfill(7),
-                node.zfill(7),
+                child,
+                node,
                 (1 / n_children) * initial_page_rank * similarity(page_embeddings[child], page_embeddings[node])
             ))
+        print('%s,%s,0' % (child, child))
+        print('%s,%s,0' % (node, node))
