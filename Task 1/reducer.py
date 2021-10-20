@@ -5,7 +5,7 @@ current_from_node = None
 from_node = None
 adj_list = []
 
-file1 = open(sys.argv[1], 'w')
+page_rank_file = open(sys.argv[1], 'w')
 
 for line in sys.stdin:
     data = line.strip().split()
@@ -14,7 +14,7 @@ for line in sys.stdin:
     if from_node != current_from_node:
         if current_from_node != None:
             print(current_from_node, adj_list, sep = '$')
-            file1.write(str(current_from_node) + ",1\n")
+            page_rank_file.write(str(current_from_node) + ",1\n")
         adj_list = []
         current_from_node = from_node
 
@@ -22,4 +22,6 @@ for line in sys.stdin:
 
 if adj_list:
     print(current_from_node, adj_list, sep = '$')
-    file1.write(str(current_from_node) + ",1")
+    page_rank_file.write(str(current_from_node) + ",1")
+
+page_rank_file.close()
