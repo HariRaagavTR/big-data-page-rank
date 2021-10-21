@@ -47,10 +47,9 @@ for line in sys.stdin:
             initial_page_rank = initial_page_ranks[child]
         except:
             initial_page_rank = 1
-        print('%s,%s,%f' % (
+        print('%s,%f' % (
                 child,
-                node,
                 (1 / n_children) * initial_page_rank * similarity(page_embeddings[child], page_embeddings[node])
             ))
-        print('%s,%s,0' % (child, child))
-        print('%s,%s,0' % (node, node))
+        print('%s,%f' % (child, 0))
+        print('%s,%f' % (node, 0))
