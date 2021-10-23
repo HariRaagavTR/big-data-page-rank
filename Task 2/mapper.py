@@ -41,7 +41,9 @@ for line in sys.stdin:
     if children[0] == '':
         children = []
     n_children = len(children)
-    
+
+    print('%s,%f' % (node, 0))
+
     for child in children:
         try:
             initial_page_rank = initial_page_ranks[child]
@@ -51,5 +53,4 @@ for line in sys.stdin:
                 child,
                 (1 / n_children) * initial_page_rank * similarity(page_embeddings[child], page_embeddings[node])
             ))
-        print('%s,%f' % (child, 0))
-        print('%s,%f' % (node, 0))
+
